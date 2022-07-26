@@ -215,7 +215,7 @@ namespace MD5_Implementation
 			var result = (ReverseByte(values.Item1).ToString("x8")
 			             + ReverseByte(values.Item2).ToString("x8")
 			             + ReverseByte(values.Item3).ToString("x8")
-			             + ReverseByte(values.Item4).ToString("x8")).ToUpper();
+			             + ReverseByte(values.Item4).ToString("x8"));
 
 			return result;
 		}

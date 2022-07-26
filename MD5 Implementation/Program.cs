@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
 namespace MD5_Implementation
 {
@@ -12,23 +11,17 @@ namespace MD5_Implementation
 		{
 			var validFiles = Utils.GetValidFiles(paths);
 			var fileBytes = Utils.GetFilesBytes(validFiles);
-			var results = _md5.Calculate(fileBytes);
-			for (var i = 0; i < results.Length; i++)
+			var hashes = _md5.Calculate(fileBytes);
+			for (var i = 0; i < hashes.Length; i++)
 			{
-				Console.WriteLine($"File -> {Path.GetFileName(validFiles[i])}\nMD5 Hash -> {results[i]}");
+				string result = string.Concat(hashes[i], " *", validFiles[i], '\n');
+				Console.Write(result);
+				File.AppendAllText(".md5", result);
 			}
-			Console.ReadLine();
-		}
 
-		private static void ProcessInput()
-		{
-			while (true)
-			{
-				Console.Write("String to hash -> ");
-				var byteArray = Encoding.ASCII.GetBytes(Console.ReadLine());
-				var hash = _md5.Calculate(byteArray);
-				Console.WriteLine($"MD5 hash -> {hash}");
-			}
+			Console.WriteLine();
+			Console.WriteLine("Press Enter to exit...");
+			Console.ReadLine();
 		}
 
 		private static void Main(string[] arguments)
@@ -36,10 +29,6 @@ namespace MD5_Implementation
 			if (arguments.Length > 0)
 			{
 				ProcessFiles(arguments);
-			}
-			else
-			{
-				ProcessInput();
 			}
 		}
 	}
