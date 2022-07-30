@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace MD5_Implementation
+namespace MD5Wrapper
 {
 	public static class Utils
 	{
