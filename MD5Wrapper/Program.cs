@@ -21,7 +21,7 @@ namespace MD5Wrapper
 			{
 				string result = string.Concat(hashes[i], " *", validFiles[i], '\n');
 				Console.Write(result);
-				File.AppendAllText(".md5", result);
+				File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".md5"), result);
 			}
 
 			Console.WriteLine();
